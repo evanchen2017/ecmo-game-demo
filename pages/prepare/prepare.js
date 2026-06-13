@@ -24,7 +24,10 @@ Page({
     animationActive: false,
     progressPercent: 0,
     animationText: '等待预充',
-    allStepsFilled: false
+    allStepsFilled: false,
+    prepareScore: 0,   // 正确放置一个物品加10分
+    errorCount: 0,     // 错误放置次数（可选）
+    resetUsed: false   // 是否使用重置（可选）
   },
 
   onLoad() {
@@ -116,9 +119,11 @@ Page({
     newComponents[dragIndex].placed = true;
     const newSteps = [...this.data.steps];
     newSteps[targetStepIndex].placed = true;
+    const newPrepareScore = this.data.prepareScore + 10;  // 每个正确+10分
     this.setData({
       components: newComponents,
-      steps: newSteps
+      steps: newSteps,
+      prepareScore: newPrepareScore
     });
     wx.showToast({ title: '放置正确', icon: 'success', duration: 500 });
 
@@ -131,6 +136,7 @@ Page({
 
   wrongDrop(message) {
     wx.vibrateShort({ type: 'medium' });
+    this.setData({ errorCount: this.data.errorCount + 1 });
     wx.showToast({
       title: message,
       icon: 'none',
@@ -148,7 +154,10 @@ Page({
       allStepsFilled: false,
       animationActive: false,
       progressPercent: 0,
-      animationText: '等待预充'
+      animationText: '等待预充',
+      prepareScore: 0,
+      errorCount: 0,
+      resetUsed: true   // 记录使用了重置
     });
     wx.showToast({ title: '已重置', icon: 'none' });
   },
@@ -185,6 +194,7 @@ Page({
 
   confirmComplete() {
     if (!this.data.allStepsFilled) return;
+    
     wx.showToast({
       title: '预充完成，进入下一关',
       icon: 'success',
@@ -192,7 +202,7 @@ Page({
     });
     const app = getApp();
     app.setLevelData('level2', {
-      score: this.data.totalScore,      // 最终得分
+      score: this.data.prepareScore * 2,      // 最终得分
       orderErrors: this.data.errorCount, // 顺序错误次数
       resetUsed: this.data.resetUsed     // 是否点过重置（需在resetGame中记录）
     });

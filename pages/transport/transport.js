@@ -340,7 +340,7 @@ Page({
 
   confirmReturn() {
     if (!this.data.returnReady) return;
-    let returnScore = 20;
+    let returnScore = 10;
     if (!this.data.checkFlow) returnScore -= 10;
     if (!this.data.checkOxygen) returnScore -= 10;
     if (!this.data.checkTube) returnScore -= 10;
