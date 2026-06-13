@@ -17,7 +17,9 @@ page {
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 20rpx 30rpx;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 12px;
   border-radius: 60rpx;
   margin-bottom: 20rpx;
   box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);

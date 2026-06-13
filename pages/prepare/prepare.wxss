@@ -16,7 +16,9 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 12px;
   background-color: #ffffff;
   border-bottom: 1rpx solid #E2E8F0;
   box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.02);

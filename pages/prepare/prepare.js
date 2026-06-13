@@ -27,7 +27,7 @@ Page({
     allStepsFilled: false
   },
 
-  onload() {
+  onLoad() {
     
     // 获取系统状态栏高度，用于自定义导航栏适配
     const systemInfo = wx.getWindowInfo();
