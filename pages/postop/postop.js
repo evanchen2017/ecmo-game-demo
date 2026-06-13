@@ -58,13 +58,7 @@ Page({
     this.setData({
       statusBarHeight: systemInfo.statusBarHeight + 50
     });
-    if (options.reset === 'true') {
-      // 重置全局中该关卡的数据
-      const app = getApp();
-      app.resetLevelData('level4');
-      // 重置页面内部状态（调用重置方法）
-      this.resetLevel();
-    }
+    
     const windowInfo = wx.getWindowInfo();
     const sceneHeight = windowInfo.windowHeight * 0.6;
     this.setData({ sceneHeight });

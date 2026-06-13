@@ -29,27 +29,27 @@
 
   <!-- 可操作物品区域 -->
   <view class="items-grid">
-    <view class="item-btn {{selectedItem === 'syringe' ? 'selected' : ''}}" bindtap="onItemTap" data-item="heparin_saline">
+    <view class="item-btn" catchtap="onItemTap" data-item="heparin_saline">
       <text class="item-icon">💊</text>
       <text>肝素盐水</text>
     </view>
-    <view class="item-btn" bindtap="onItemTap" data-item="suture">
+    <view class="item-btn" catchtap="onItemTap" data-item="suture">
       <text class="item-icon">🧵</text>
       <text>缝线</text>
     </view>
-    <view class="item-btn" bindtap="onItemTap" data-item="scissors">
+    <view class="item-btn" catchtap="onItemTap" data-item="scissors">
       <text class="item-icon">✂️</text>
       <text>无菌剪刀</text>
     </view>
-    <view class="item-btn {{selectedItem === 'syringe' ? 'selected' : ''}}" bindtap="onItemTap" data-item="syringe">
+    <view class="item-btn {{selectedItem === 'syringe' ? 'selected' : ''}}" catchtap="onItemTap" data-item="syringe">
       <text class="item-icon">💉</text>
       <text>注射器</text>
     </view>
-    <view class="item-btn" bindtap="onItemTap" data-item="heparin_ampoule">
+    <view class="item-btn" catchtap="onItemTap" data-item="heparin_ampoule">
       <text class="item-icon">🧪</text>
       <text>肝素安瓿</text>
     </view>
-    <view class="item-btn" bindtap="onItemTap" data-item="gauze">
+    <view class="item-btn" catchtap="onItemTap" data-item="gauze">
       <text class="item-icon">🧻</text>
       <text>纱布</text>
     </view>
