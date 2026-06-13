@@ -1,0 +1,86 @@
+<!--pages/case_receive/case_receive.wxml-->
+<view class="container">
+  <!-- 自定义顶部栏 (适配状态栏高度) -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-title">第1关 · 病例接收</view>
+    <view class="nav-badge">关卡1/6</view>
+  </view>
+
+  <!-- 病历卡片列表 -->
+  <scroll-view class="card-list" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 模块1：基本信息 -->
+    <view class="card-item" bindtap="toggleModule" data-module="basic">
+      <view class="card-header">
+        <text class="title">📋 基本信息</text>
+        <text class="arrow">{{expanded.basic ? '▼' : '▶'}}</text>
+      </view>
+      <view class="card-content {{expanded.basic ? 'show' : 'hide'}}" animation="{{animationData.basic}}">
+        <view class="info-row"><text class="label">姓名：</text><text>张建国</text></view>
+        <view class="info-row"><text class="label">年龄：</text><text>55岁</text></view>
+        <view class="info-row"><text class="label">性别：</text><text>男</text></view>
+        <view class="info-row"><text class="label">诊断：</text><text class="diagnosis">急性广泛前壁心肌梗死、心源性休克</text></view>
+      </view>
+    </view>
+
+    <!-- 模块2：生命体征与用药 -->
+    <view class="card-item" bindtap="toggleModule" data-module="vitals">
+      <view class="card-header">
+        <text class="title">💊 生命体征与用药</text>
+        <text class="arrow">{{expanded.vitals ? '▼' : '▶'}}</text>
+      </view>
+      <view class="card-content {{expanded.vitals ? 'show' : 'hide'}}" animation="{{animationData.vitals}}">
+        <view class="info-row"><text class="label">血压：</text><text>72/45 mmHg</text></view>
+        <view class="info-row"><text class="label">心率：</text><text>128 bpm</text></view>
+        <view class="info-row"><text class="label">SpO₂：</text><text>89%</text></view>
+        <view class="info-row"><text class="label">体温：</text><text>36.8℃</text></view>
+        <view class="info-row"><text class="label">血管活性药：</text><text>去甲肾上腺素 0.5 μg/kg/min</text></view>
+      </view>
+    </view>
+
+    <!-- 模块3：关键检查结果 -->
+    <view class="card-item" bindtap="toggleModule" data-module="labs">
+      <view class="card-header">
+        <text class="title">🔬 关键检查结果</text>
+        <text class="arrow">{{expanded.labs ? '▼' : '▶'}}</text>
+      </view>
+      <view class="card-content {{expanded.labs ? 'show' : 'hide'}}" animation="{{animationData.labs}}">
+        <view class="info-row"><text class="label">乳酸：</text><text>4.8 mmol/L (↑)</text></view>
+        <view class="info-row"><text class="label">碱剩余(BE)：</text><text>-6 mmol/L</text></view>
+        <view class="info-row"><text class="label">左室射血分数：</text><text>25%</text></view>
+        <view class="info-row"><text class="label">冠脉造影：</text><text>三支病变</text></view>
+      </view>
+    </view>
+
+    <!-- 模块4：当前治疗 -->
+    <view class="card-item" bindtap="toggleModule" data-module="treatment">
+      <view class="card-header">
+        <text class="title">💉 当前治疗</text>
+        <text class="arrow">{{expanded.treatment ? '▼' : '▶'}}</text>
+      </view>
+      <view class="card-content {{expanded.treatment ? 'show' : 'hide'}}" animation="{{animationData.treatment}}">
+        <view class="info-row"><text class="label">IABP：</text><text>支持中 (反压比1:1)</text></view>
+        <view class="info-row"><text class="label">呼吸支持：</text><text>无创通气 FiO₂ 60%</text></view>
+      </view>
+    </view>
+
+    <!-- 模块5：ECMO启动指征 -->
+    <view class="card-item" bindtap="toggleModule" data-module="indication">
+      <view class="card-header">
+        <text class="title">🚨 ECMO启动指征</text>
+        <text class="arrow">{{expanded.indication ? '▼' : '▶'}}</text>
+      </view>
+      <view class="card-content {{expanded.indication ? 'show' : 'hide'}}" animation="{{animationData.indication}}">
+        <view class="info-row"><text>IABP支持后仍持续低血压，心脏团队会诊决定行VA-ECMO</text></view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部确认按钮 -->
+  <view class="bottom-btn-wrapper">
+    <button class="confirm-btn {{allModulesRead ? 'active' : 'disabled'}}" 
+            bindtap="confirmReceive" 
+            disabled="{{!allModulesRead}}">
+      ✓ 确认已接收并评估
+    </button>
+  </view>
+</view>

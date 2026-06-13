@@ -1,0 +1,154 @@
+/* pages/intraop/intraop.wxss */
+page {
+  background-color: #F0F4F8;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20rpx 24rpx;
+  box-sizing: border-box;
+}
+
+.custom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  background-color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 40rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.02);
+}
+
+.nav-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.timer-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #DC2626;
+}
+
+.help-icon {
+  font-size: 22px;
+  background-color: #E2E8F0;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.vitals-panel {
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 24rpx;
+  padding: 20rpx 24rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.vital-item {
+  flex: 1;
+  text-align: center;
+}
+
+.map-item {
+  background-color: #3B82F6;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+  cursor: pointer;
+}
+
+.doctor-card {
+  background-color: #1E3A8A;
+  border-radius: 32rpx;
+  padding: 32rpx 24rpx;
+  margin-bottom: 24rpx;
+  transition: background-color 0.2s;
+}
+
+.doctor-text {
+  color: white;
+  font-size: 34rpx;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.timer-bar {
+  height: 12rpx;
+  background-color: #E2E8F0;
+  border-radius: 6rpx;
+  margin-bottom: 40rpx;
+  overflow: hidden;
+}
+
+.timer-fill {
+  height: 100%;
+  width: 100%;
+  background-color: #EF4444;
+  transition: width 0.1s linear;
+}
+
+.items-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24rpx;
+  margin-bottom: 40rpx;
+}
+
+.item-btn {
+  width: 160rpx;
+  background-color: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 24rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.08);
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.item-btn.selected {
+  background-color: #DBEAFE;
+  border: 2rpx solid #3B82F6;
+  transform: scale(0.96);
+}
+
+.item-icon {
+  font-size: 48rpx;
+}
+
+.bottom-btn-wrapper {
+  margin-top: auto;
+  padding-bottom: 20rpx;
+}
+
+.reset-btn {
+  background-color: #94A3B8;
+  color: white;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  height: 88rpx;
+  line-height: 88rpx;
+}

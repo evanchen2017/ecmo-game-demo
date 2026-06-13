@@ -1,0 +1,397 @@
+/* pages/transport/transport.wxss */
+page {
+  background-color: #F0F4F8;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.custom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 20rpx 30rpx;
+  border-radius: 60rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.score {
+  background-color: #F1F5F9;
+  padding: 6rpx 16rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.stage-content {
+  flex: 1;
+  display: flex;
+  gap: 20rpx;
+  overflow: hidden;
+}
+
+.left-panel, .right-panel {
+  background-color: white;
+  border-radius: 32rpx;
+  padding: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+  overflow-y: auto;
+}
+
+.left-panel {
+  width: 45%;
+}
+
+.right-panel {
+  width: 50%;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+  color: #0F172A;
+}
+
+.items-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.drag-item {
+  width: 160rpx;
+  background-color: #F8FAFE;
+  border-radius: 24rpx;
+  padding: 20rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.08);
+  transition: all 0.1s;
+}
+
+.drag-item.disabled {
+  opacity: 0.4;
+  background-color: #E2E8F0;
+}
+
+.drag-icon {
+  font-size: 48rpx;
+}
+
+.drag-name {
+  font-size: 24rpx;
+  color: #1E293B;
+}
+
+.slots-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.slot-item {
+  background-color: #F8FAFE;
+  border-radius: 20rpx;
+  padding: 16rpx;
+}
+
+.slot-label {
+  font-size: 26rpx;
+  color: #64748B;
+  margin-bottom: 12rpx;
+}
+
+.slot-content {
+  min-height: 120rpx;
+  border: 2rpx dashed #CBD5E1;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+}
+
+.slot-content.filled {
+  border: 2rpx solid #10B981;
+  background-color: #ECFDF5;
+  gap: 12rpx;
+}
+
+.slot-icon {
+  font-size: 40rpx;
+}
+
+.slot-name {
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.slot-placeholder {
+  color: #94A3B8;
+  font-size: 26rpx;
+}
+
+.reset-btn {
+  background-color: #94A3B8;
+  color: white;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.bottom-btn-wrapper {
+  margin-top: 20rpx;
+  padding: 10rpx;
+}
+
+.start-btn {
+  width: 100%;
+  height: 96rpx;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.start-btn.active {
+  background-color: #10B981;
+  color: white;
+  box-shadow: 0 8rpx 20rpx rgba(16,185,129,0.3);
+}
+
+.start-btn.disabled {
+  background-color: #CBD5E1;
+  color: #F1F5F9;
+}
+
+/* 转运阶段样式 */
+.transport-scene {
+  flex: 1;
+  background: linear-gradient(145deg, #A0C4E0, #7BA3C0);
+  border-radius: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 40rpx;
+}
+
+.transport-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><rect width="100" height="100" fill="none"/><path d="M0,50 L100,50 M50,0 L50,100" stroke="white" stroke-width="1"/></svg>');
+  background-repeat: repeat;
+}
+
+.patient-bed {
+  font-size: 80rpx;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 60rpx;
+  padding: 30rpx;
+  margin-bottom: 60rpx;
+  z-index: 1;
+}
+
+.progress-section {
+  width: 80%;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 48rpx;
+  padding: 30rpx;
+  z-index: 1;
+}
+
+.progress-label {
+  color: white;
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.progress-bar {
+  height: 24rpx;
+  background-color: #E2E8F0;
+  border-radius: 12rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #10B981;
+  transition: width 0.3s;
+}
+
+.timer {
+  color: white;
+  font-size: 32rpx;
+  font-weight: 600;
+  text-align: center;
+}
+
+.event-hint {
+  margin-top: 30rpx;
+  color: white;
+  font-size: 28rpx;
+  background-color: rgba(0,0,0,0.5);
+  padding: 10rpx 20rpx;
+  border-radius: 40rpx;
+}
+
+/* 返回阶段样式 */
+.return-scene {
+  flex: 1;
+  background-color: #E6EDF4;
+  border-radius: 32rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checklist-card {
+  width: 85%;
+  background-color: white;
+  border-radius: 48rpx;
+  padding: 40rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.1);
+}
+
+.checklist-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40rpx;
+  color: #1E293B;
+}
+
+.checklist-item {
+  margin-bottom: 30rpx;
+  font-size: 30rpx;
+}
+
+.return-btn {
+  margin-top: 40rpx;
+  width: 100%;
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.return-btn.active {
+  background-color: #10B981;
+  color: white;
+}
+
+.return-btn.disabled {
+  background-color: #CBD5E1;
+  color: #F1F5F9;
+}
+
+/* 拖拽跟随浮层 */
+.drag-follower {
+  position: fixed;
+  width: 160rpx;
+  background-color: rgba(255,255,255,0.95);
+  border-radius: 20rpx;
+  padding: 16rpx 8rpx;
+  text-align: center;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.2);
+  z-index: 1000;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+/* 突发事件自定义弹窗 */
+.event-modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+.event-modal-container {
+  width: 85%;
+  background-color: white;
+  border-radius: 32rpx;
+  padding: 40rpx;
+  max-height: 80%;
+  overflow-y: auto;
+}
+.event-modal-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #DC2626;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+.event-modal-content {
+  font-size: 32rpx;
+  color: #1E293B;
+  margin-bottom: 40rpx;
+  line-height: 1.4;
+}
+.event-modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+.event-modal-option {
+  background-color: #F1F5F9;
+  padding: 24rpx;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.1s;
+}
+.event-modal-option:active {
+  background-color: #DBEAFE;
+  transform: scale(0.98);
+}
+.event-modal-timer {
+  text-align: center;
+  font-size: 28rpx;
+  color: #EF4444;
+  margin-top: 20rpx;
+}
+.event-progress {
+  height: 8rpx;
+  background-color: #E2E8F0;
+  border-radius: 4rpx;
+  margin-top: 16rpx;
+  overflow: hidden;
+}
+.event-progress-fill {
+  height: 100%;
+  width: 100%;
+  background-color: #EF4444;
+  transition: width 0.1s linear;
+}

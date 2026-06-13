@@ -1,0 +1,87 @@
+<!--pages/postop/postop.wxml-->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-title">第4关 · 上机后护理观察</view>
+    <view class="nav-right">
+      <text class="risk-counter">剩余风险点：{{remainingRisk}}</text>
+      <text class="score">得分：{{score}}</text>
+      <text class="hint-icon" bindtap="useHint">💡</text>
+    </view>
+  </view>
+
+  <!-- 场景画布（模拟ICU床旁） -->
+  <view class="scene" style="height: {{sceneHeight}}px;">
+    <view class="scene-bg"></view>
+    
+    <!-- 患者半身示意 -->
+    <view class="patient-body"></view>
+    <view class="patient-head"></view>
+    <view class="patient-arm"></view>
+    <view class="patient-leg"></view>
+    <view class="cannulation-site"></view>
+    
+    <!-- ECMO主机 -->
+    <view class="ecmo-machine">
+      <text>流量: 3.2 L/min</text>
+      <text>转速: 3200 rpm</text>
+      <text class="pressure-diff">膜肺压力: 45 mmHg</text>
+    </view>
+    
+    <!-- 监护仪 -->
+    <view class="monitor">
+      <text>HR 118 | BP 85/52</text>
+      <text>SpO2 94% | CVP 12</text>
+    </view>
+    
+    <!-- 尿袋 -->
+    <view class="urine-bag">
+      <text>淡红色尿液</text>
+    </view>
+
+    <!-- 热区（绝对定位，使用正确的状态索引） -->
+    <!-- 热区1：ECMO管路气泡位置 -->
+    <view class="hotspot hotspot-1 {{hotspotStatus[0] ? 'resolved' : (hotspotFlash[0] ? 'flash' : '')}}" 
+          bindtap="onHotspotTap" data-index="0"></view>
+    <!-- 热区2：左下肢 -->
+    <view class="hotspot hotspot-2 {{hotspotStatus[1] ? 'resolved' : (hotspotFlash[1] ? 'flash' : '')}}" 
+          bindtap="onHotspotTap" data-index="1"></view>
+    <!-- 热区3：腹股沟插管处 -->
+    <view class="hotspot hotspot-3 {{hotspotStatus[2] ? 'resolved' : (hotspotFlash[2] ? 'flash' : '')}}" 
+          bindtap="onHotspotTap" data-index="2"></view>
+    <!-- 热区4：尿袋 -->
+    <view class="hotspot hotspot-4 {{hotspotStatus[3] ? 'resolved' : (hotspotFlash[3] ? 'flash' : '')}}" 
+          bindtap="onHotspotTap" data-index="3"></view>
+    <!-- 热区5：心前区 -->
+    <view class="hotspot hotspot-5 {{hotspotStatus[4] ? 'resolved' : (hotspotFlash[4] ? 'flash' : '')}}" 
+          bindtap="onHotspotTap" data-index="4"></view>
+    <!-- 热区6：膜肺压力差显示区域 -->
+    <view class="hotspot hotspot-6 {{hotspotStatus[5] ? 'resolved' : (hotspotFlash[5] ? 'flash' : '')}}" 
+          bindtap="onHotspotTap" data-index="5"></view>
+  </view>
+
+  <!-- 底部信息栏 -->
+  <view class="bottom-bar">
+    <text class="clicked-info">{{clickedInfo}}</text>
+    <button class="info-btn" bindtap="showAuxInfo">辅助信息</button>
+  </view>
+
+  <!-- 模态框（点击热区时显示） -->
+  <view class="modal-mask" wx:if="{{modalVisible}}" bindtap="closeModal">
+    <view class="modal-container" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text>{{modalTitle}}</text>
+        <text class="modal-timer">剩余时间: {{modalTimeLeft}}s</text>
+      </view>
+      <view class="modal-progress">
+        <view class="modal-progress-fill" style="width: {{modalProgress}}%;"></view>
+      </view>
+      <view class="modal-question">{{modalQuestion}}</view>
+      <view class="modal-options">
+        <view wx:for="{{modalOptions}}" wx:key="index" class="modal-option" bindtap="selectOption" data-opt-index="{{index}}">
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

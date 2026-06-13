@@ -1,0 +1,238 @@
+/* pages/prepare/prepare.wxss */
+page {
+  background-color: #F0F4F8;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #F0F4F8;
+}
+
+/* 顶部导航栏 */
+.custom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #ffffff;
+  border-bottom: 1rpx solid #E2E8F0;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.02);
+}
+
+.nav-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.reset-btn {
+  background-color: #F1F5F9;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* 主内容区 flex 左右布局 */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx 24rpx;
+  gap: 20rpx;
+  overflow: hidden;
+}
+
+/* 左侧面板：占40%宽度 */
+.left-panel {
+  width: 40%;
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  overflow-y: auto;
+}
+
+.drag-item {
+  background-color: #F8FAFE;
+  border-radius: 20rpx;
+  padding: 24rpx 12rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.08);
+  transition: all 0.2s;
+  cursor: grab;
+}
+
+.drag-item-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.drag-icon {
+  font-size: 48rpx;
+}
+
+.drag-name {
+  font-size: 28rpx;
+  color: #1E293B;
+  font-weight: 500;
+}
+
+/* 右侧面板：占55%宽度 */
+.right-panel {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.steps-area {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.step-item {
+  margin-bottom: 24rpx;
+}
+
+.step-number {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 12rpx;
+}
+
+.step-slot {
+  min-height: 100rpx;
+  border: 2rpx dashed #CBD5E1;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F8FAFE;
+  transition: all 0.2s;
+}
+
+.step-slot.filled {
+  border: 2rpx solid #10B981;
+  background-color: #ECFDF5;
+}
+
+.step-slot.empty {
+  border: 2rpx dashed #94A3B8;
+}
+
+.placeholder {
+  color: #94A3B8;
+  font-size: 28rpx;
+}
+
+.step-icon {
+  font-size: 40rpx;
+  margin-right: 16rpx;
+}
+
+.step-name {
+  font-size: 28rpx;
+  color: #1E293B;
+  font-weight: 500;
+}
+
+/* 动画区 */
+.animation-area {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 24rpx;
+  background-color: #E2E8F0;
+  border-radius: 12rpx;
+  overflow: hidden;
+  margin-bottom: 16rpx;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #10B981;
+  transition: width 0.1s linear;
+}
+
+.animation-text {
+  font-size: 28rpx;
+  color: #475569;
+}
+
+/* 底部按钮 */
+.bottom-btn-wrapper {
+  padding: 20rpx 40rpx 40rpx;
+  background-color: #F0F4F8;
+}
+
+.confirm-btn {
+  width: 100%;
+  height: 96rpx;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.confirm-btn.active {
+  background-color: #10B981;
+  color: white;
+  box-shadow: 0 8rpx 20rpx rgba(16,185,129,0.3);
+}
+
+.confirm-btn.disabled {
+  background-color: #CBD5E1;
+  color: #F1F5F9;
+  opacity: 0.7;
+}
+
+/* 拖拽跟随浮层 */
+.drag-follower {
+  position: fixed;
+  width: 160rpx;
+  background-color: rgba(255,255,255,0.95);
+  border-radius: 20rpx;
+  padding: 16rpx 8rpx;
+  text-align: center;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.2);
+  z-index: 1000;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.drag-follower-icon {
+  font-size: 48rpx;
+}
+
+.drag-follower-name {
+  font-size: 24rpx;
+  color: #1E293B;
+}

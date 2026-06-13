@@ -1,0 +1,147 @@
+/* pages/case_receive/case_receive.wxss */
+page {
+  background-color: #F0F4F8;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #F0F4F8;
+}
+
+/* 自定义导航栏 */
+.custom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 12px;
+  background-color: #ffffff;
+  border-bottom: 1rpx solid #E2E8F0;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.02);
+}
+
+.nav-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.nav-badge {
+  background-color: #E2E8F0;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #475569;
+}
+
+/* 卡片列表区域 */
+.card-list {
+  flex: 1;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+/* 单个卡片 */
+.card-item {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  margin-bottom: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+  transition: all 0.2s;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 32rpx;
+  background-color: #FFFFFF;
+  font-weight: 500;
+  font-size: 32rpx;
+  color: #0F172A;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: 600;
+  letter-spacing: 0.5rpx;
+}
+
+.arrow {
+  font-size: 28rpx;
+  color: #94A3B8;
+}
+
+/* 卡片内容 - 折叠动画 */
+.card-content {
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-color: #F8FAFE;
+  border-top: 1rpx solid #EFF3F8;
+}
+
+.card-content.show {
+  max-height: 800rpx;
+  padding: 24rpx 32rpx;
+}
+
+.card-content.hide {
+  max-height: 0;
+  padding: 0 32rpx;
+}
+
+/* 信息行 */
+.info-row {
+  display: flex;
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+  line-height: 44rpx;
+  color: #1E293B;
+}
+
+.label {
+  width: 140rpx;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.diagnosis {
+  flex: 1;
+  color: #DC2626;
+  font-weight: 500;
+}
+
+/* 底部按钮 */
+.bottom-btn-wrapper {
+  padding: 20rpx 40rpx 40rpx;
+  background-color: #F0F4F8;
+}
+
+.confirm-btn {
+  width: 100%;
+  height: 96rpx;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.confirm-btn.active {
+  background-color: #10B981;
+  color: white;
+  box-shadow: 0 8rpx 20rpx rgba(16,185,129,0.3);
+}
+
+.confirm-btn.disabled {
+  background-color: #CBD5E1;
+  color: #F1F5F9;
+  opacity: 0.7;
+}

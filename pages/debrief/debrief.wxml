@@ -1,0 +1,75 @@
+<!--pages/debrief/debrief.wxml-->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-title">第6关 · 交班与复盘</view>
+    <view class="total-score">总分：{{totalScore}}</view>
+  </view>
+
+  <!-- 患者信息条 -->
+  <view class="patient-info">
+    <text>张建国，55岁，急性心梗后心源性休克</text>
+    <text>VA-ECMO 术后第2天 | 生命体征稳定</text>
+  </view>
+
+  <!-- Swiper 三标签页 -->
+  <swiper class="swiper" current="{{currentTab}}" bindchange="onSwiperChange" indicator-dots="{{false}}">
+    <!-- 面板一：得分总览 -->
+    <swiper-item>
+      <scroll-view scroll-y class="tab-content">
+        <view class="chart-title">各关卡得分（满分100）</view>
+        <view class="score-chart">
+          <view wx:for="{{levelScores}}" wx:key="index" class="chart-row">
+            <text class="level-name">第{{index+1}}关</text>
+            <view class="bar-container">
+              <view class="bar" style="width: {{item/100*100}}%; background-color: {{item>=80?'#10B981': (item>=60?'#F59E0B':'#EF4444')}};"></view>
+            </view>
+            <text class="score-number">{{item}}</text>
+          </view>
+        </view>
+        <view class="overall-rating">综合评价：{{ratingText}}</view>
+      </scroll-view>
+    </swiper-item>
+
+    <!-- 面板二：错误分析与建议 -->
+    <swiper-item>
+      <scroll-view scroll-y class="tab-content">
+        <view class="error-list">
+          <view wx:for="{{suggestions}}" wx:key="index" class="error-item">
+            <text class="error-icon">⚠️</text>
+            <text class="error-text">{{item}}</text>
+          </view>
+          <view wx:if="{{suggestions.length === 0}}" class="empty-tip">🎉 太棒了！没有明显错误，继续保持！</view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+    <!-- 面板三：交班报告 -->
+    <swiper-item>
+      <scroll-view scroll-y class="tab-content">
+        <view class="report-box">
+          <text class="report-title">📋 SBAR交班报告</text>
+          <text class="report-text">{{sbarText}}</text>
+          <button class="copy-btn" bindtap="copyReport">📋 复制报告</button>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-buttons">
+    <button class="reset-btn" bindtap="showResetOptions">🔄 重新挑战</button>
+    <button class="finish-btn" bindtap="finishGame">🎓 完成学习</button>
+  </view>
+</view>
+
+<!-- 证书模态框 -->
+<view class="cert-modal" wx:if="{{certVisible}}" bindtap="closeCert">
+  <view class="cert-content" catchtap="stopPropagation">
+    <canvas canvas-id="certCanvas" class="cert-canvas" style="width: 600rpx; height: 800rpx;" width="{{canvasWidth}}" height="{{canvasHeight}}"></canvas>
+    <view class="cert-buttons">
+      <button class="save-btn" bindtap="saveCert">保存到相册</button>
+      <button class="close-btn" bindtap="closeCert">关闭</button>
+    </view>
+  </view>
+</view>

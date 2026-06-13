@@ -1,0 +1,61 @@
+<!--pages/prepare/prepare.wxml-->
+<view class="container">
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-title">第2关 · 管路预充准备</view>
+    <view class="reset-btn" bindtap="resetGame">重置</view>
+  </view>
+
+  <view class="main-content">
+    <!-- 左侧：可拖拽部件列表 -->
+    <view class="left-panel">
+      <view wx:for="{{components}}" wx:key="index" class="drag-item" 
+            data-index="{{index}}" data-name="{{item.name}}" data-icon="{{item.icon}}"
+            bindtouchstart="onTouchStart" catchtouchmove="onTouchMove" bindtouchend="onTouchEnd"
+            hidden="{{item.placed}}">
+        <view class="drag-item-inner">
+          <text class="drag-icon">{{item.icon}}</text>
+          <text class="drag-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 右侧：步骤列表 + 动画区 -->
+    <view class="right-panel">
+      <!-- 右侧步骤区域 -->
+<view class="steps-area">
+  <view wx:for="{{steps}}" wx:key="index" class="step-item">
+    <view class="step-number">步骤 {{index + 1}}</view>
+    <!-- 添加唯一 id -->
+    <view class="step-slot {{item.placed ? 'filled' : 'empty'}}" id="step-slot-{{index}}">
+      <block wx:if="{{item.placed}}">
+        <text class="step-icon">{{item.icon}}</text>
+        <text class="step-name">{{item.name}}</text>
+      </block>
+      <block wx:else>
+        <text class="placeholder">待放置</text>
+      </block>
+    </view>
+  </view>
+</view>
+      <view class="animation-area">
+        <view class="progress-bar" wx:if="{{animationActive}}">
+          <view class="progress-fill" style="width: {{progressPercent}}%;"></view>
+        </view>
+        <view class="animation-text">{{animationText}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-btn-wrapper">
+    <button class="confirm-btn {{allStepsFilled ? 'active' : 'disabled'}}" 
+            bindtap="confirmComplete" 
+            disabled="{{!allStepsFilled}}">
+      确认完成
+    </button>
+  </view>
+
+  <view wx:if="{{dragging}}" class="drag-follower" style="left: {{dragX}}px; top: {{dragY}}px;">
+    <text class="drag-follower-icon">{{dragIcon}}</text>
+    <text class="drag-follower-name">{{dragName}}</text>
+  </view>
+</view>

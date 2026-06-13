@@ -1,0 +1,62 @@
+<!--pages/intraop/intraop.wxml-->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-title">第3关 · 术中配合</view>
+    <view class="nav-right">
+      <text class="timer-text">剩余时间：{{globalTime}}s</text>
+      <text class="help-icon" bindtap="showHint">❔</text>
+    </view>
+  </view>
+
+  <!-- 生命体征面板（半透明） -->
+  <view class="vitals-panel">
+    <view class="vital-item">BP: {{vitals.bp}}</view>
+    <view class="vital-item">HR: {{vitals.hr}} bpm</view>
+    <view class="vital-item">SpO₂: {{vitals.spo2}}%</view>
+    <view class="vital-item map-item" bindtap="onMapClick">MAP: {{vitals.map}} mmHg</view>
+  </view>
+
+  <!-- 医生指令卡片 -->
+  <view class="doctor-card" style="background-color: {{cardColor}};">
+    <text class="doctor-text">👨‍⚕️ {{currentCommand.text}}</text>
+  </view>
+
+  <!-- 倒计时进度条 -->
+  <view class="timer-bar">
+    <view class="timer-fill" style="width: {{commandProgress}}%;"></view>
+  </view>
+
+  <!-- 可操作物品区域 -->
+  <view class="items-grid">
+    <view class="item-btn {{selectedItem === 'syringe' ? 'selected' : ''}}" bindtap="onItemTap" data-item="heparin_saline">
+      <text class="item-icon">💊</text>
+      <text>肝素盐水</text>
+    </view>
+    <view class="item-btn" bindtap="onItemTap" data-item="suture">
+      <text class="item-icon">🧵</text>
+      <text>缝线</text>
+    </view>
+    <view class="item-btn" bindtap="onItemTap" data-item="scissors">
+      <text class="item-icon">✂️</text>
+      <text>无菌剪刀</text>
+    </view>
+    <view class="item-btn {{selectedItem === 'syringe' ? 'selected' : ''}}" bindtap="onItemTap" data-item="syringe">
+      <text class="item-icon">💉</text>
+      <text>注射器</text>
+    </view>
+    <view class="item-btn" bindtap="onItemTap" data-item="heparin_ampoule">
+      <text class="item-icon">🧪</text>
+      <text>肝素安瓿</text>
+    </view>
+    <view class="item-btn" bindtap="onItemTap" data-item="gauze">
+      <text class="item-icon">🧻</text>
+      <text>纱布</text>
+    </view>
+  </view>
+
+  <!-- 底部重置按钮 -->
+  <view class="bottom-btn-wrapper">
+    <button class="reset-btn" bindtap="resetLevel">重置本关</button>
+  </view>
+</view>

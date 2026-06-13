@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/case_receive/case_receive",
+    "pages/prepare/prepare",
+    "pages/intraop/intraop",
+    "pages/postop/postop",
+    "pages/transport/transport",
+    "pages/debrief/debrief"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "ECMO护理模拟",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,119 @@
+<!--pages/transport/transport.wxml-->
+<view class="container">
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-title">第5关 · 外出CT检查 - {{stageName}}</view>
+    <view class="nav-right">
+      <text class="score">得分：{{totalScore}}</text>
+    </view>
+  </view>
+
+  <!-- 阶段一：准备阶段 -->
+  <block wx:if="{{stage === 'prepare'}}">
+    <view class="stage-content">
+      <view class="left-panel">
+        <view class="section-title">物品库（长按拖拽）</view>
+        <view class="items-grid">
+          <view wx:for="{{allItems}}" wx:key="index" class="drag-item {{item.placed ? 'disabled' : ''}}"
+                data-index="{{index}}" data-name="{{item.name}}" data-icon="{{item.icon}}" data-required="{{item.required}}"
+                catchtouchstart="onTouchStart" catchtouchmove="onTouchMove" catchtouchend="onTouchEnd"
+                hidden="{{item.placed}}">
+            <text class="drag-icon">{{item.icon}}</text>
+            <text class="drag-name">{{item.name}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="right-panel">
+        <view class="section-title">转运车插槽（拖拽至此）</view>
+        <view class="slots-area">
+          <view wx:for="{{slots}}" wx:key="index" class="slot-item" data-slot-index="{{index}}">
+            <view class="slot-label">插槽 {{index+1}}</view>
+            <!-- 为每个插槽内容区添加唯一ID -->
+            <view class="slot-content {{item.filled ? 'filled' : 'empty'}}" id="slot-{{index}}">
+              <block wx:if="{{item.filled}}">
+                <text class="slot-icon">{{item.icon}}</text>
+                <text class="slot-name">{{item.name}}</text>
+              </block>
+              <block wx:else>
+                <text class="slot-placeholder">待放置</text>
+              </block>
+            </view>
+          </view>
+        </view>
+        <button class="reset-btn" bindtap="resetPrepare">重置准备</button>
+      </view>
+    </view>
+    <view class="bottom-btn-wrapper">
+      <button class="start-btn {{prepareComplete ? 'active' : 'disabled'}}" 
+              bindtap="startTransport" disabled="{{!prepareComplete}}">
+        开始转运
+      </button>
+    </view>
+  </block>
+
+  <!-- 阶段二：转运阶段 -->
+  <block wx:if="{{stage === 'transport'}}">
+    <view class="transport-scene">
+      <view class="transport-bg"></view>
+      <view class="patient-bed">🛏️ 患者</view>
+      <view class="progress-section">
+        <view class="progress-label">转运路程进度</view>
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{transportProgress}}%;"></view>
+        </view>
+        <view class="timer">倒计时：{{transportTimer}}s</view>
+      </view>
+      <view class="event-hint">突发状况: {{eventsHandled}}/{{totalEvents}}</view>
+    </view>
+    <!-- 自定义突发状况弹窗 -->
+<view class="event-modal-mask" wx:if="{{eventModalVisible}}" bindtap="closeEventModal">
+  <view class="event-modal-container" catchtap="stopPropagation">
+    <view class="event-modal-title">{{currentEvent.title}}</view>
+    <view class="event-modal-content">{{currentEvent.content}}</view>
+    <view class="event-modal-options">
+      <view wx:for="{{currentEvent.options}}" wx:key="index" 
+            class="event-modal-option" bindtap="selectEventOption" data-opt-index="{{index}}">
+        {{item}}
+      </view>
+    </view>
+    <view class="event-modal-timer">剩余时间：{{eventTimeLeft}}s</view>
+    <view class="event-progress">
+      <view class="event-progress-fill" style="width: {{eventProgressPercent}}%;"></view>
+    </view>
+  </view>
+</view>
+  </block>
+
+  <!-- 阶段三：返回阶段 -->
+  <block wx:if="{{stage === 'return'}}">
+    <view class="return-scene">
+      <view class="checklist-card">
+        <view class="checklist-title">返回前安全核查清单</view>
+        <view class="checklist-item">
+          <checkbox-group bindchange="onCheckChange" data-check="flow">
+            <checkbox value="flow" color="#10B981"> ECMO流量、转速、膜肺压力正常</checkbox>
+          </checkbox-group>
+        </view>
+        <view class="checklist-item">
+          <checkbox-group bindchange="onCheckChange" data-check="oxygen">
+            <checkbox value="oxygen" color="#10B981"> 氧气瓶压力充足（&gt;5MPa）</checkbox>
+          </checkbox-group>
+        </view>
+        <view class="checklist-item">
+          <checkbox-group bindchange="onCheckChange" data-check="tube">
+            <checkbox value="tube" color="#10B981"> 管路固定牢靠，无打折</checkbox>
+          </checkbox-group>
+        </view>
+        <button class="return-btn {{returnReady ? 'active' : 'disabled'}}" 
+                bindtap="confirmReturn" disabled="{{!returnReady}}">
+          确认返回
+        </button>
+      </view>
+    </view>
+  </block>
+
+  <!-- 拖拽跟随浮层 -->
+  <view wx:if="{{dragging}}" class="drag-follower" style="left: {{dragX}}px; top: {{dragY}}px;">
+    <text class="drag-icon">{{dragIcon}}</text>
+    <text class="drag-name">{{dragName}}</text>
+  </view>
+</view>
